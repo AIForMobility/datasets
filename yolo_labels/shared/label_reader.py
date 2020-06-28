@@ -7,7 +7,7 @@ class LabelReader(metaclass=ABCMeta):
         super(LabelReader, self).__init__()
 
         self.input_path = input_path
-        self.data = self.read_source_file() # type: pd.DataFrame
+        self.data = self.read_source_file()  # type: pd.DataFrame
 
     @abstractmethod
     def read_source_file(self, *args, **kwargs) -> pd.DataFrame:
