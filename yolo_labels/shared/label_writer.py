@@ -51,7 +51,7 @@ class LabelWriter:
         return bboxes_str
 
     def __bbox_to_str(self, bbox: tuple) -> str:
-        return '%f,%f,%f,%f,%d' % bbox
+        return '%d,%d,%d,%d,%d' % bbox
 
     def __on_exit(self) -> None:
         self.file.close()
