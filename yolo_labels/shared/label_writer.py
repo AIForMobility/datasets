@@ -35,10 +35,7 @@ class LabelWriter:
         return open(self.output_path, 'w+')
 
     def __insert_line(self, image_path: str, bboxes: list):
-        print('image path', image_path)
-        print('objects: ', bboxes)
-        print('annotations: ', self.__get_image_annotations(image_path, bboxes))
-        print('-' * 100)
+        self.file.write(self.__get_image_annotations(image_path, bboxes) + '\n')
 
     def __get_image_annotations(self, image_path: str, bboxes: list) -> str:
         return '%s %s' % (image_path, self.__bboxes_to_str(bboxes))
