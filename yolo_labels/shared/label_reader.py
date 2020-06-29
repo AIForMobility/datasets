@@ -23,6 +23,6 @@ class LabelReader(metaclass=ABCMeta):
         """
         a generator that yields a tuple (described below)
 
-        :return: a tuple containing a string (iamge path) and an array of tuples. => (image_path, [(xxx), (yyy), ...])
+        :return: a tuple containing a string (image path) and an array of tuples. => (image_path, [(xxx), (yyy), ...])
         each tuple should have the format: (x,y,w,h,class_id): bounding box coordinates + object class id
         """
