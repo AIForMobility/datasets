@@ -42,7 +42,7 @@ class LabelBoxLabelReader(LabelReader):
         # labels = [self.get_classification_values(cls) for cls in obj['classifications']]
         return x, y, h, w, label_id
 
-    def get_classification_values(self, classification: object) -> tuple:
+    def get_classification_values(self, classification: dict) -> tuple:
         title = classification['title']
 
         if 'answers' in classification:  # self.has_key(classification, 'answers')
@@ -53,7 +53,7 @@ class LabelBoxLabelReader(LabelReader):
         return title, []
 
     @classmethod
-    def get_object_label(cls, classification: object) -> list:
+    def get_object_label(cls, classification: dict) -> list:
         return [classification['value']]
 
     @classmethod
@@ -61,7 +61,7 @@ class LabelBoxLabelReader(LabelReader):
         return [cls['value'] for cls in classifications]
 
     @classmethod
-    def has_key(cls, obj: object, key: str):
+    def has_key(cls, obj: dict, key: str):
         try:
             _ = obj[key]
             return True
