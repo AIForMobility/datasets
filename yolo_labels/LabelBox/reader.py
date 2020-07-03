@@ -11,11 +11,10 @@ class LabelBoxLabelReader(LabelReader):
     def __init__(self, input_path: str, label_id_mapper: dict, separator: str = ',', images_folder: str = '',
                  ignore_unmapped_labels: bool = True):
         self.input_path = input_path
-        self.label_id_mapper = label_id_mapper
         self.separator = separator
         self.images_folder = images_folder
         self.ignore_unmapped_labels = ignore_unmapped_labels
-        super(LabelBoxLabelReader, self).__init__(input_path)
+        super(LabelBoxLabelReader, self).__init__(input_path, label_id_mapper)
 
     def read_source_file(self, *args, **kwargs) -> pd.DataFrame:
         return pd.read_csv(self.input_path, sep=self.separator, index_col='ID')
@@ -53,9 +52,6 @@ class LabelBoxLabelReader(LabelReader):
 
         return title, []
 
-    def label_to_id(self, label):
-        return self.label_id_mapper[label]
-
     @classmethod
     def get_object_label(cls, classification: object) -> list:
         return [classification['value']]
@@ -71,15 +67,3 @@ class LabelBoxLabelReader(LabelReader):
             return True
         except KeyError:
             return False
-
-    def get_label_id(self, label: str):
-        try:
-            return self.label_to_id(label)
-        except KeyError as e:
-            self.on_label_map_key_error(e)
-
-    def on_label_map_key_error(self, e: KeyError):
-        if self.ignore_unmapped_labels:
-            return None
-        else:
-            raise e
