@@ -48,9 +48,6 @@ class LabelBoxLabelReader(LabelReader):
         self.label_names = self.get_label_names_dictionary()
 
     def read_source_file(self, dataset: str, **kwargs) -> pd.DataFrame:
-        pass
-
-    def get_annotation_path(self) -> str:
         path = os.path.join(self.input_path, self.csv_path, '{dataset}-annotations-bbox.csv'
                             .format(dataset=self.dataset_type))
 
