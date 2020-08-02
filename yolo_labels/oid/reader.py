@@ -30,7 +30,7 @@ CLASS_DESCRIPTION_PATH = 'class-descriptions-boxable.csv'
 # -- -- {test|train|validation}/
 # -- -- -- ClassNameX/
 # -- -- -- -- image_id.jpg ...
-class LabelBoxLabelReader(LabelReader):
+class OIDLabelReader(LabelReader):
     def __init__(self,
                  input_path: str,
                  dataset_type: DatasetType,
@@ -40,7 +40,7 @@ class LabelBoxLabelReader(LabelReader):
                  class_desc_filename: str = CLASS_DESCRIPTION_PATH,
                  ignore_unmapped_labels: bool = True,
                  ):
-        super(LabelBoxLabelReader).__init__(input_path, label_id_mapper, ignore_unmapped_labels)
+        super(OIDLabelReader).__init__(input_path, label_id_mapper, ignore_unmapped_labels)
         self.dataset_type = dataset_type
         self.csv_path = csv_path
         self.images_formatted_path = images_formatted_path
