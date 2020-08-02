@@ -9,7 +9,6 @@ class LabelReader(metaclass=ABCMeta):
         self.input_path = input_path
         self.label_id_mapper = label_id_mapper
         self.ignore_unmapped_labels = ignore_unmapped_labels
-        self.data = self.read_source_file()  # type: pd.DataFrame
 
     def get_label_id(self, label: str):
         try:
