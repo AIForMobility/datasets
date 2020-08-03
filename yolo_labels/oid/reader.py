@@ -49,7 +49,7 @@ class OIDLabelReader(LabelReader):
         self.csv_path = csv_path
         self.images_formatted_path = images_formatted_path
         self.class_desc_filename = class_desc_filename
-        self.data = self.process_df()
+        self.data = self.get_filtered_df()
         self.label_names = self.get_label_names_dictionary()
 
     def read_source_file(self, dataset: DatasetType, **kwargs) -> pd.DataFrame:
@@ -60,17 +60,12 @@ class OIDLabelReader(LabelReader):
             .set_index('ImageID', append=True)\
             .swaplevel(0, 1)
 
-    def process_df(self):
-        df = self.read_source_file(self.dataset_type)
-        df = self.get_filtered_df(df)
-        return df
-
-    def get_filtered_df(self, df: pd.DataFrame):
+    def get_filtered_df(self):
         """
         removes row with labelName that is not part of the labels we're detecting.
-        :param df: DataFrame source
         :return: DataFrame
         """
+        df = self.read_source_file(self.dataset_type)
         return df[df['LabelName'].isin(self.label_id_mapper.keys())]
 
     # def group_by_image_name(self, df: pd.DataFrame):
