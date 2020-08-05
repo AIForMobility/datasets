@@ -11,11 +11,10 @@ class LabelBoxLabelReader(LabelReader):
     def __init__(self, input_path: str, label_id_mapper: dict, separator: str = ',', images_folder: str = '',
                  ignore_unmapped_labels: bool = True):
         self.input_path = input_path
-        self.label_id_mapper = label_id_mapper
         self.separator = separator
         self.images_folder = images_folder
         self.ignore_unmapped_labels = ignore_unmapped_labels
-        super(LabelBoxLabelReader, self).__init__(input_path)
+        super(LabelBoxLabelReader, self).__init__(input_path, label_id_mapper)
 
     def read_source_file(self, *args, **kwargs) -> pd.DataFrame:
         return pd.read_csv(self.input_path, sep=self.separator, index_col='ID')
@@ -43,7 +42,7 @@ class LabelBoxLabelReader(LabelReader):
         # labels = [self.get_classification_values(cls) for cls in obj['classifications']]
         return x, y, h, w, label_id
 
-    def get_classification_values(self, classification: object) -> tuple:
+    def get_classification_values(self, classification: dict) -> tuple:
         title = classification['title']
 
         if 'answers' in classification:  # self.has_key(classification, 'answers')
@@ -53,11 +52,8 @@ class LabelBoxLabelReader(LabelReader):
 
         return title, []
 
-    def label_to_id(self, label):
-        return self.label_id_mapper[label]
-
     @classmethod
-    def get_object_label(cls, classification: object) -> list:
+    def get_object_label(cls, classification: dict) -> list:
         return [classification['value']]
 
     @classmethod
@@ -65,21 +61,9 @@ class LabelBoxLabelReader(LabelReader):
         return [cls['value'] for cls in classifications]
 
     @classmethod
-    def has_key(cls, obj: object, key: str):
+    def has_key(cls, obj: dict, key: str):
         try:
             _ = obj[key]
             return True
         except KeyError:
             return False
-
-    def get_label_id(self, label: str):
-        try:
-            return self.label_to_id(label)
-        except KeyError as e:
-            self.on_label_map_key_error(e)
-
-    def on_label_map_key_error(self, e: KeyError):
-        if self.ignore_unmapped_labels:
-            return None
-        else:
-            raise e
