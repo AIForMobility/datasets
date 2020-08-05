@@ -1,2 +1,3 @@
 from .label_reader import LabelReader
 from .label_writer import LabelWriter
+from .object_name_id import ObjectNameId

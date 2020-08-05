@@ -21,6 +21,7 @@ class VoTTLabelReader(LabelReader):
         self.images_folder = images_folder
         self.ignore_unmapped_labels = ignore_unmapped_labels
         super(VoTTLabelReader, self).__init__(input_path, label_id_mapper, ignore_unmapped_labels)
+        self.data = self.read_source_file()  # type: pd.DataFrame
 
     def read_source_file(self, *args, **kwargs) -> pd.DataFrame:
         df = pd.read_csv(self.input_path, sep=self.separator)  # , index_col=['label', 'image']
