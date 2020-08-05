@@ -104,7 +104,7 @@ class OIDLabelReader(LabelReader):
         return x_min * img_width, y_min * img_height, x_max * img_width, y_max * img_height
 
     def next_labels(self) -> tuple:
-        with tqdm(self.data) as p_bar:
+        with tqdm(self.data.groupby(level=0)) as p_bar:
             for image, image_objects in self.data.groupby(level=0):
                 p_bar.update()
 
