@@ -3,7 +3,7 @@ from yolo_labels.shared import LabelWriter
 import os
 
 
-filename = 'yolo_labels/LabelImg/input.csv'
+filename = 'yolo_labels/LabelBox/input.csv'
 input_path = os.path.join(os.getcwd(), filename)
 assert os.path.isfile(input_path)
 
