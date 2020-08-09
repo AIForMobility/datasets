@@ -15,6 +15,7 @@ class LabelBoxLabelReader(LabelReader):
         self.images_folder = images_folder
         self.ignore_unmapped_labels = ignore_unmapped_labels
         super(LabelBoxLabelReader, self).__init__(input_path, label_id_mapper)
+        self.data = self.read_source_file()  # type: pd.DataFrame
 
     def read_source_file(self, *args, **kwargs) -> pd.DataFrame:
         return pd.read_csv(self.input_path, sep=self.separator, index_col='ID')
