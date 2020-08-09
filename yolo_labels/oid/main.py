@@ -7,17 +7,17 @@ import os
 input_path = '/Users/bothmena/Projects/datasets/OID'
 output_path = os.path.join(input_path, 'oid_to_yolo/output.txt')
 label_id_mapper = {
-    '/m/0199g': ObjectNameId.BICYCLE,
-    '/m/0k4j': ObjectNameId.CAR,
-    '/m/04_sv': ObjectNameId.MOTORCYCLE,
-    '/m/076bq': ObjectNameId.SEGWAY,
-    '/m/01jfm_': ObjectNameId.LICENCE_PLATE,
+    '/m/0199g': ObjectNameId.BICYCLE.value,
+    '/m/0k4j': ObjectNameId.CAR.value,
+    '/m/04_sv': ObjectNameId.MOTORCYCLE.value,
+    '/m/076bq': ObjectNameId.SEGWAY.value,
+    '/m/01jfm_': ObjectNameId.LICENCE_PLATE.value,
 }
 
 reader = OIDLabelReader(input_path=input_path,
                         dataset_type=DatasetType.TRAIN,
                         label_id_mapper=label_id_mapper)
-writer = LabelWriter(output_path=output_path, reader=reader, overwrite_existent=True)
+writer = LabelWriter(output_path='dist/output.txt', reader=reader, overwrite_existent=True)
 
 writer.write_annotations()
 
