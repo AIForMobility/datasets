@@ -116,12 +116,12 @@ class OIDLabelReader(LabelReader):
 
                 bboxes = self.get_image_bboxes(image_objects, image_path)
 
-                yield image_path, bboxes
+                yield img_filename, bboxes
 
     def get_image_bboxes(self, image_objects: pd.DataFrame, image_path: str) -> List[Tuple]:
         bboxes = []
         for _, row in image_objects.iterrows():
-            label_id = self.label_id_mapper[row['LabelName']].value
+            label_id = self.label_id_mapper[row['LabelName']]
 
             normalized_bbox_attributes = row['XMin'], row['YMin'], row['XMax'], row['YMax']
             x_min, y_min, x_max, y_max = self.get_bbox_unnormalized_attributes(image_path, normalized_bbox_attributes)
