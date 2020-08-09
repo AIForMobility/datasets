@@ -116,7 +116,7 @@ class OIDLabelReader(LabelReader):
 
                 bboxes = self.get_image_bboxes(image_objects, image_path)
 
-                yield image_path, bboxes
+                yield img_filename, bboxes
 
     def get_image_bboxes(self, image_objects: pd.DataFrame, image_path: str) -> List[Tuple]:
         bboxes = []
