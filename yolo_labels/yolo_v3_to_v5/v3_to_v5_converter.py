@@ -27,7 +27,7 @@ class V3ToV5Converter:
         image, *objects = line.split(' ')
         annotations = self.generate_annotations(image, objects)
         output_filename = '{}.txt'.format(path.splitext(image)[0])
-        with io.open(path.join(self.output_dir, output_filename)) as output_file:
+        with io.open(path.join(self.output_dir, output_filename), 'w+') as output_file:
             output_file.write(annotations)
 
     def generate_annotations(self, image, objects: list):
@@ -37,17 +37,17 @@ class V3ToV5Converter:
 
         return annotations
 
-    def stringify_object_data(self, image, obj) -> str:
-        *bbox, label_id = obj
+    def stringify_object_data(self, image, obj: str) -> str:
+        *bbox, label_id = obj.strip().split(',')
         normalized_bbox = self.normalize_bbox(image, bbox)
         annotation_list = [label_id] + normalized_bbox
         annotation_list = [str(item) for item in annotation_list]
 
-        return ' '.join(annotation_list)
+        return ' '.join(annotation_list) + '\n'
 
     def normalize_bbox(self, image_filename: str, bbox: list):
         image = Image.open(path.join(self.images_dir, image_filename))  # type: Image.Image
-        width, height = image.size
-        width, height = float(width), float(height)
+        height, width = image.size
+        float_bbox = [float(item) for item in bbox]
 
-        return [bbox[0]/width, bbox[1]/width, bbox[2]/height, bbox[3]/height]
+        return [float_bbox[0]/width, float_bbox[1]/height, float_bbox[2]/width, float_bbox[3]/height]
