@@ -17,7 +17,7 @@ label_id_mapper = {
 reader = OIDLabelReader(input_path=input_path,
                         dataset_type=DatasetType.TRAIN,
                         label_id_mapper=label_id_mapper)
-writer = LabelWriter(output_path='dist/output.txt', reader=reader, overwrite_existent=True)
+writer = LabelWriter(output_path=output_path, reader=reader, overwrite_existent=True)
 
 writer.write_annotations()
 
