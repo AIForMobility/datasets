@@ -133,3 +133,4 @@ dmypy.json
 
 # output files
 dist
+.DS_Store
