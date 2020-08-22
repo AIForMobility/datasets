@@ -5,7 +5,7 @@ import os
 
 
 input_path = '/Users/bothmena/Projects/datasets/OID'
-output_path = os.path.join(input_path, 'oid_to_yolo/output.txt')
+output_path = os.path.join(input_path, 'oid_to_yolo/output_train.txt')
 label_id_mapper = {
     '/m/0199g': ObjectNameId.BICYCLE.value,
     '/m/0k4j': ObjectNameId.CAR.value,
@@ -16,7 +16,9 @@ label_id_mapper = {
 
 reader = OIDLabelReader(input_path=input_path,
                         dataset_type=DatasetType.TRAIN,
-                        label_id_mapper=label_id_mapper)
+                        label_id_mapper=label_id_mapper,
+                        unnormalize_bbox=False,
+                        )
 writer = LabelWriter(output_path='dist/output.txt', reader=reader, overwrite_existent=True)
 
 writer.write_annotations()
