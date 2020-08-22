@@ -1,10 +1,10 @@
 import os
 from enum import Enum
+from typing import List, Tuple
 
 import cv2
 import pandas as pd
 from tqdm import tqdm
-from typing import List, Tuple
 
 from yolo_labels.shared import LabelReader
 
@@ -41,6 +41,7 @@ class OIDLabelReader(LabelReader):
                  images_formatted_path: str = IMAGES_FORMATTED_PATH,
                  class_desc_filename: str = CLASS_DESCRIPTION_FILENAME,
                  ignore_unmapped_labels: bool = True,
+                 unnormalize_bbox: bool = False,
                  ):
         super(OIDLabelReader, self).__init__(input_path=input_path,
                                              label_id_mapper=label_id_mapper,
@@ -49,6 +50,7 @@ class OIDLabelReader(LabelReader):
         self.csv_path = csv_path
         self.images_formatted_path = images_formatted_path
         self.class_desc_filename = class_desc_filename
+        self.unnormalize_bbox = unnormalize_bbox
         self.data = self.get_filtered_df()
         self.label_names = self.get_label_names_dictionary()
 
@@ -56,8 +58,8 @@ class OIDLabelReader(LabelReader):
         path = os.path.join(self.input_path, self.csv_path, '{dataset}-annotations-bbox.csv'
                             .format(dataset=self.dataset_type))
 
-        return pd.read_csv(path)\
-            .set_index('ImageID', append=True)\
+        return pd.read_csv(path) \
+            .set_index('ImageID', append=True) \
             .swaplevel(0, 1)
 
     def get_filtered_df(self):
@@ -118,14 +120,18 @@ class OIDLabelReader(LabelReader):
 
                 yield img_filename, bboxes
 
+    def get_bbox_attributes(self, row: pd.Series, image_path: str):
+        x_min, y_min, x_max, y_max = row['XMin'], row['YMin'], row['XMax'], row['YMax']
+        if self.unnormalize_bbox:
+            return self.get_bbox_unnormalized_attributes(image_path, (x_min, y_min, x_max, y_max))
+        return x_min, y_min, x_max, y_max
+
     def get_image_bboxes(self, image_objects: pd.DataFrame, image_path: str) -> List[Tuple]:
         bboxes = []
         for _, row in image_objects.iterrows():
             label_id = self.label_id_mapper[row['LabelName']]
 
-            normalized_bbox_attributes = row['XMin'], row['YMin'], row['XMax'], row['YMax']
-            x_min, y_min, x_max, y_max = self.get_bbox_unnormalized_attributes(image_path, normalized_bbox_attributes)
-
+            x_min, y_min, x_max, y_max = self.get_bbox_attributes(row, image_path)
             bboxes.append((x_min, y_min, x_max, y_max, label_id))
 
         return bboxes
