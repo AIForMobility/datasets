@@ -8,6 +8,6 @@ input_path = os.path.join(os.getcwd(), filename)
 assert os.path.isfile(input_path)
 
 reader = LabelBoxLabelReader(input_path, {'moped_bbox': ObjectNameId.MOTORCYCLE.value}, ignore_unmapped_labels=True)
-writer = LabelWriter(output_path='dist/output.txt', reader=reader, overwrite_existent=True)
+writer = LabelWriter(output_path='dist/output_label_box.txt', reader=reader, overwrite_existent=True)
 
 writer.write_annotations()

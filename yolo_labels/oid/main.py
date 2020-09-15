@@ -19,7 +19,7 @@ reader = OIDLabelReader(input_path=input_path,
                         label_id_mapper=label_id_mapper,
                         unnormalize_bbox=False,
                         )
-writer = LabelWriter(output_path='dist/output.txt', reader=reader, overwrite_existent=True)
+writer = LabelWriter(output_path='dist/output_oid.txt', reader=reader, overwrite_existent=True)
 
 writer.write_annotations()
 

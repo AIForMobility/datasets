@@ -12,6 +12,6 @@ reader = VoTTLabelReader(input_path=input_path,
                          label_id_mapper={'moped_bbox': ObjectNameId.MOTORCYCLE.value},
                          object_labels='moped_bbox',
                          ignore_unmapped_labels=True)
-writer = LabelWriter(output_path='dist/output.txt', reader=reader, overwrite_existent=True)
+writer = LabelWriter(output_path='dist/output_vott.txt', reader=reader, overwrite_existent=True)
 
 writer.write_annotations()
