@@ -13,6 +13,8 @@ assert os.path.isfile(vott_input_path), 'vott input file does not exist'
 vott_reader = VoTTLabelReader(input_path=vott_input_path,
                               label_id_mapper={'escooter': ObjectNameId.E_SCOOTER.value},
                               object_labels='escooter',
+                              images_folder=vott_directory,
+                              normalize_bboxes=True,
                               ignore_unmapped_labels=True)
 vott_writer = LabelWriter(output_path='dist/vehicle_detection/output_vott.txt',
                           reader=vott_reader, overwrite_existent=True)
