@@ -13,6 +13,8 @@ assert os.path.isfile(vott_input_path), 'vott input file does not exist'
 vott_reader = VoTTLabelReader(input_path=vott_input_path,
                               label_id_mapper={'escooter': ObjectNameId.E_SCOOTER.value},
                               object_labels='escooter',
+                              images_folder=vott_directory,
+                              normalize_bboxes=True,
                               ignore_unmapped_labels=True)
 vott_writer = LabelWriter(output_path='dist/vehicle_detection/output_vott.txt',
                           reader=vott_reader, overwrite_existent=True)
@@ -53,3 +55,6 @@ rel_to_abs = RelativeToAbsolute('dist/output.txt', 'dist/output_abs.txt', '/User
 rel_to_abs()
 
 # Converting annotation from YOLO v4 -> v5
+
+# "emob-02-media-hd.jpg.asset.1571131655549.jpg",868.7111801242236,629.7532592024539,1161.8478260869565,986.5508052147238,"escooter"
+# "emob-02-media-hd.jpg.asset.1571131655549.jpg",868.7111801242236,629.7532592024539,1161.8478260869565,986.5508052147238,"active"
