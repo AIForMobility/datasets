@@ -55,6 +55,3 @@ rel_to_abs = RelativeToAbsolute('dist/output.txt', 'dist/output_abs.txt', '/User
 rel_to_abs()
 
 # Converting annotation from YOLO v4 -> v5
-
-# "emob-02-media-hd.jpg.asset.1571131655549.jpg",868.7111801242236,629.7532592024539,1161.8478260869565,986.5508052147238,"escooter"
-# "emob-02-media-hd.jpg.asset.1571131655549.jpg",868.7111801242236,629.7532592024539,1161.8478260869565,986.5508052147238,"active"
