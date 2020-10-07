@@ -1,7 +1,6 @@
 import pandas as pd
 from typing import List, Tuple, Union
 import os
-from PIL import Image
 from yolo_labels.shared import LabelReader
 from utils.images import normalize_bbox_coordinates
 
