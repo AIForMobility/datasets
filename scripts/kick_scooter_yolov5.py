@@ -1,8 +1,22 @@
 import os
 
 from yolo_labels.oid.reader import OIDLabelReader, DatasetType
-from yolo_labels.shared import LabelWriter, ObjectNameId, AnnotationConcatenator, RelativeToAbsolute
+from yolo_labels.shared import LabelWriter, ObjectNameId, AnnotationConcatenator
+from yolo_labels.yolo_v3_to_v5 import V3ToV5Converter, YoloV5DatasetType
 from yolo_labels.vott.reader import VoTTLabelReader
+
+# creating necessary folders
+
+os.makedirs('dist/vehicle_detection', exist_ok=True)
+final_dir_path_formatted = '/Users/bothmena/Projects/datasets/vehicles_object_detection/yolo_v5_{}'
+v = 1
+final_dir_name = final_dir_path_formatted.format(v)
+while os.path.isdir(final_dir_name):
+    v += 1
+    final_dir_name = final_dir_path_formatted.format(v)
+
+print('final_dir_name', final_dir_name)
+os.mkdir(final_dir_name)
 
 # Generating YOLOv4 from VoTT
 
@@ -43,15 +57,26 @@ for dataset_type in [DatasetType.TRAIN, DatasetType.VALIDATION]:
 
 # Concatenating VoTT & OID annotations
 
+output_all = 'dist/vehicle_detection/output_all.txt'
 concatenator = AnnotationConcatenator(
-    'dist/output_abs.txt',
-    'dist/output1.txt',
-    'dist/output2.txt',
-    output_file='dist/output_all.txt',
+    'dist/vehicle_detection/output_vott.txt',
+    'dist/vehicle_detection/output_oid_train.txt',
+    'dist/vehicle_detection/output_oid_validation.txt',
+    output_file=output_all,
 )
 concatenator()
 
-rel_to_abs = RelativeToAbsolute('dist/output.txt', 'dist/output_abs.txt', '/Users/bothmena/Projects')
-rel_to_abs()
-
 # Converting annotation from YOLO v4 -> v5
+
+images_dir = '/Users/bothmena/Projects/datasets/vehicles_object_detection/yolo_v3/images/train'
+sizes = {
+    YoloV5DatasetType.TRAIN: 0.8,
+    YoloV5DatasetType.VALIDATION: 0.2,
+}
+
+converter = V3ToV5Converter(input_file=output_all,
+                            images_dir=images_dir,
+                            output_dir=final_dir_name,
+                            sizes=sizes)
+converter()
+converter.write_data_yaml_file(ObjectNameId)
