@@ -2,12 +2,13 @@ import io
 import os
 import random
 import shutil
-from typing import List, Dict, Type
+from typing import List, Dict, Type, Tuple
 from enum import Enum
 
 from PIL import Image
 
 from yolo_labels.yolo_v3_to_v5 import YoloV5DatasetType
+from utils.images import xyxy_to_cxcywh, normalize_bbox_coordinates
 
 
 class V3ToV5Converter:
@@ -59,20 +60,19 @@ class V3ToV5Converter:
     def stringify_object_data(self, image, obj: str) -> str:
         *bbox, label_id = obj.strip().split(',')
         normalized_bbox = self.normalize_bbox(image, bbox)
-        annotation_list = [label_id] + normalized_bbox
+        converted_bbox = xyxy_to_cxcywh(normalized_bbox)
+        annotation_list = [label_id] + list(converted_bbox)
         annotation_list = [str(item) for item in annotation_list]
 
         return ' '.join(annotation_list) + '\n'
 
-    def normalize_bbox(self, image_filename: str, bbox: list):
+    def normalize_bbox(self, image_filename: str, bbox: list) -> Tuple[float, ...]:
         float_bbox = [float(item) for item in bbox]
 
         if not self.normalize_bboxes:
-            return float_bbox
+            return tuple(float_bbox)
 
-        image = Image.open(os.path.join(self.images_dir, image_filename))  # type: Image.Image
-        height, width = image.size
-        return [float_bbox[0] / width, float_bbox[1] / height, float_bbox[2] / width, float_bbox[3] / height]
+        return normalize_bbox_coordinates(os.path.join(self.images_dir, image_filename), float_bbox)
 
     def create_dirs(self, dataset_types: List[YoloV5DatasetType]):
         for dataset_type in dataset_types:
