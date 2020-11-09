@@ -4,6 +4,15 @@ the csv file is expected to have two columns:
 - client: which is a string: name of the client owning the image
 - data: an image encoded in base64
 
+This class will also create a csv file that will list all images in s3 that can be later fed to a Sagemaker batch transform job to run
+prediction on all images that will be later (after conversion: b64 -> images) uploaded to S3, for this you need to provide to additional
+arguments:
+- s3_bucket: bucket name that is storing the images
+- s3_dir_key: S3 key of the directory that will contain the uploaded images (under this directory you should find all client's sub-dirs)
+example of an image s3 URI: s3://some-s3-bucket/directory-1/directory-2/client/client_000123.jpg
+---> s3_bucket = some-s3-bucket
+     s3_dir_key = directory-1/directory-2
+
 the script will read the csv file and save all images as a jpg file in the following structure:
 `output_dir`
   |- `client`
@@ -23,9 +32,13 @@ class Base64ToImageFileConverter:
 
     def __init__(self,
                  csv_path: str,
-                 output_dir: str):
+                 output_dir: str,
+                 s3_bucket: str = None,
+                 s3_dir_key: str = None):
         self.csv_path = csv_path
         self.output_dir = output_dir
+        self.s3_bucket = s3_bucket
+        self.s3_dir_key = s3_dir_key[1:] if s3_dir_key[0] == '/' else s3_dir_key
         self.counter = {}
         self.unsuccessful_conversions = 0
         self.images_dir = self.create_sub_directory('images')
@@ -83,6 +96,9 @@ class Base64ToImageFileConverter:
             except Exception as e:
                 self.write_error_logs(e, index, row)
 
+        if self.s3_dir_key is not None and self.s3_bucket is not None:
+            self.write_batch_transform_input_file()
+
         self.print_summary(df.shape[0])
 
     def create_sub_directory(self, name: str):
@@ -99,3 +115,10 @@ class Base64ToImageFileConverter:
         if self.unsuccessful_conversions:
             print('please check the error logs to know the reason for failing to convert those images located in: {}'
                   .format(self.error_dir))
+
+    def write_batch_transform_input_file(self):
+        csv_file = open(os.path.join(self.output_dir, 'batch_transform_input.csv'), 'w')
+        for client, image_count in self.counter.items():
+            for index in range(1, image_count + 1):
+                image_s3_key = os.path.join(self.s3_dir_key, client, self.image_fn_format.format(client, index))
+                csv_file.write('{},{}\n'.format(self.s3_bucket, image_s3_key))
