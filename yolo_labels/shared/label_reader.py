@@ -1,16 +1,17 @@
 from abc import ABCMeta, abstractmethod
 import pandas as pd
+from typing import Dict
 
 
 class LabelReader(metaclass=ABCMeta):
-    def __init__(self, input_path: str, label_id_mapper: dict, ignore_unmapped_labels: bool = True):
+    def __init__(self, input_path: str, label_id_mapper: Dict[str, int], ignore_unmapped_labels: bool = True):
         super(LabelReader, self).__init__()
 
         self.input_path = input_path
         self.label_id_mapper = label_id_mapper
         self.ignore_unmapped_labels = ignore_unmapped_labels
 
-    def get_label_id(self, label: str):
+    def get_label_id(self, label: str) -> int:
         try:
             return self.__label_to_id(label)
         except KeyError as e:
