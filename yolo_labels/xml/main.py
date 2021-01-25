@@ -1,5 +1,5 @@
 from yolo_labels.xml.reader import XMLLabelReader
-from yolo_labels.shared import LabelWriter, ObjectNameId
+from yolo_labels.shared import LabelWriter, VehicleDetectionObjectNameId
 import os
 
 

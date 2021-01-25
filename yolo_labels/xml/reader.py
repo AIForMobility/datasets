@@ -16,14 +16,12 @@ coord_indices = {
 class XMLLabelReader(LabelReader):
 
     def __init__(self,
-                 input_path: str,  # dataset folder: should have images_dir & annotations_dir sub-dirs
+                 input_path: str,  # dataset folder: should have images & `annotations_dir` sub-dirs
                  label_id_mapper: dict,
                  annotations_dir: str = 'annotations',
-                 images_dir: str = 'images',
                  ignore_unmapped_labels: bool = True
                  ):
         self.annotations_dir = annotations_dir
-        self.images_dir = images_dir
         self.root = None
         super().__init__(input_path, label_id_mapper, ignore_unmapped_labels)
 

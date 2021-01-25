@@ -1,5 +1,5 @@
 from yolo_labels.vott.reader import VoTTLabelReader
-from yolo_labels.shared import LabelWriter, ObjectNameId
+from yolo_labels.shared import LabelWriter, VehicleDetectionObjectNameId
 import os
 
 
@@ -9,7 +9,7 @@ print(input_path)
 assert os.path.isfile(input_path)
 
 reader = VoTTLabelReader(input_path=input_path,
-                         label_id_mapper={'moped_bbox': ObjectNameId.MOTORCYCLE.value},
+                         label_id_mapper={'moped_bbox': VehicleDetectionObjectNameId.MOTORCYCLE.value},
                          object_labels='moped_bbox',
                          ignore_unmapped_labels=True)
 writer = LabelWriter(output_path='dist/output_vott.txt', reader=reader, overwrite_existent=True)

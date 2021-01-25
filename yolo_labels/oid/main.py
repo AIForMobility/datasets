@@ -1,17 +1,17 @@
 from yolo_labels.oid.reader import OIDLabelReader, DatasetType
 from yolo_labels.shared import LabelWriter
-from yolo_labels.shared import ObjectNameId
+from yolo_labels.shared import VehicleDetectionObjectNameId
 import os
 
 
 input_path = '/Users/bothmena/Projects/datasets/OID'
 output_path = os.path.join(input_path, 'oid_to_yolo/output_train.txt')
 label_id_mapper = {
-    '/m/0199g': ObjectNameId.BICYCLE.value,
-    '/m/0k4j': ObjectNameId.CAR.value,
-    '/m/04_sv': ObjectNameId.MOTORCYCLE.value,
-    '/m/076bq': ObjectNameId.SEGWAY.value,
-    '/m/01jfm_': ObjectNameId.LICENCE_PLATE.value,
+    '/m/0199g': VehicleDetectionObjectNameId.BICYCLE.value,
+    '/m/0k4j': VehicleDetectionObjectNameId.CAR.value,
+    '/m/04_sv': VehicleDetectionObjectNameId.MOTORCYCLE.value,
+    '/m/076bq': VehicleDetectionObjectNameId.SEGWAY.value,
+    '/m/01jfm_': VehicleDetectionObjectNameId.LICENCE_PLATE.value,
 }
 
 reader = OIDLabelReader(input_path=input_path,
