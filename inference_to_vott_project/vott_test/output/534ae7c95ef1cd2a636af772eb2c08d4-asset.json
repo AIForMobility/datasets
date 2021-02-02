@@ -1,0 +1,49 @@
+{
+    "asset": {
+        "format": "jpg",
+        "id": "534ae7c95ef1cd2a636af772eb2c08d4",
+        "name": "image_3.jpg",
+        "path": "file:/Users/aymenbenothmen/Projects/vott_test/images/image_3.jpg",
+        "size": {
+            "width": 1000,
+            "height": 667
+        },
+        "state": 2,
+        "type": 1
+    },
+    "regions": [
+        {
+            "id": "XJm-n6Oh9",
+            "type": "RECTANGLE",
+            "tags": [
+                "vehicle",
+                "other"
+            ],
+            "boundingBox": {
+                "height": 332.04892113095235,
+                "width": 774.672187715666,
+                "left": 113.93633540372672,
+                "top": 229.43498883928572
+            },
+            "points": [
+                {
+                    "x": 113.93633540372672,
+                    "y": 229.43498883928572
+                },
+                {
+                    "x": 888.6085231193927,
+                    "y": 229.43498883928572
+                },
+                {
+                    "x": 888.6085231193927,
+                    "y": 561.4839099702381
+                },
+                {
+                    "x": 113.93633540372672,
+                    "y": 561.4839099702381
+                }
+            ]
+        }
+    ],
+    "version": "2.2.0"
+}

@@ -1,0 +1,217 @@
+{
+    "name": "test_project",
+    "securityToken": "test_project Token",
+    "videoSettings": {
+        "frameExtractionRate": 15
+    },
+    "tags": [
+        {
+            "name": "vehicle",
+            "color": "#800080"
+        },
+        {
+            "name": "porshe",
+            "color": "#FF00FF"
+        },
+        {
+            "name": "mercedes",
+            "color": "#800080"
+        },
+        {
+            "name": "other",
+            "color": "#FF0000"
+        },
+        {
+            "name": "human",
+            "color": "#800000"
+        }
+    ],
+    "id": "KmEb8LCIi",
+    "activeLearningSettings": {
+        "autoDetect": false,
+        "predictTag": true,
+        "modelPathType": "coco"
+    },
+    "version": "2.1.0",
+    "lastVisitedAssetId": "534ae7c95ef1cd2a636af772eb2c08d4",
+    "assets": {
+        "534ae7c95ef1cd2a636af772eb2c08d4": {
+            "asset": {
+                "format": "jpg",
+                "id": "534ae7c95ef1cd2a636af772eb2c08d4",
+                "name": "image_3.jpg",
+                "path": "file:/Users/aymenbenothmen/Projects/vott_test/images/image_3.jpg",
+                "size": {
+                    "width": 1000,
+                    "height": 667
+                },
+                "state": 2,
+                "type": 1
+            },
+            "regions": [
+                {
+                    "id": "XJm-n6Oh9",
+                    "type": "RECTANGLE",
+                    "tags": [
+                        "vehicle",
+                        "other"
+                    ],
+                    "boundingBox": {
+                        "height": 332.04892113095235,
+                        "width": 774.672187715666,
+                        "left": 113.93633540372672,
+                        "top": 229.43498883928572
+                    },
+                    "points": [
+                        {
+                            "x": 113.93633540372672,
+                            "y": 229.43498883928572
+                        },
+                        {
+                            "x": 888.6085231193927,
+                            "y": 229.43498883928572
+                        },
+                        {
+                            "x": 888.6085231193927,
+                            "y": 561.4839099702381
+                        },
+                        {
+                            "x": 113.93633540372672,
+                            "y": 561.4839099702381
+                        }
+                    ]
+                }
+            ],
+            "version": "2.1.0"
+        },
+        "b2624d761474c8274a215bf9a399eba7": {
+            "asset": {
+                "format": "jpg",
+                "id": "b2624d761474c8274a215bf9a399eba7",
+                "name": "image_2.jpg",
+                "path": "file:/Users/aymenbenothmen/Projects/vott_test/images/image_2.jpg",
+                "size": {
+                    "width": 1000,
+                    "height": 1285
+                },
+                "state": 2,
+                "type": 1
+            },
+            "regions": [
+                {
+                    "id": "98VpmXIxm",
+                    "type": "RECTANGLE",
+                    "tags": [
+                        "vehicle",
+                        "other"
+                    ],
+                    "boundingBox": {
+                        "height": 407.1308207174835,
+                        "width": 790.8075438861986,
+                        "left": 91.15844430992736,
+                        "top": 575.3962947690858
+                    },
+                    "points": [
+                        {
+                            "x": 91.15844430992736,
+                            "y": 575.3962947690858
+                        },
+                        {
+                            "x": 881.9659881961259,
+                            "y": 575.3962947690858
+                        },
+                        {
+                            "x": 881.9659881961259,
+                            "y": 982.5271154865693
+                        },
+                        {
+                            "x": 91.15844430992736,
+                            "y": 982.5271154865693
+                        }
+                    ]
+                }
+            ],
+            "version": "2.1.0"
+        },
+        "afa571a11202d6a2bccb6cf1e84d3267": {
+            "asset": {
+                "format": "jpg",
+                "id": "afa571a11202d6a2bccb6cf1e84d3267",
+                "name": "image_1.jpg",
+                "path": "file:/Users/aymenbenothmen/Projects/vott_test/images/image_1.jpg",
+                "size": {
+                    "width": 896,
+                    "height": 504
+                },
+                "state": 2,
+                "type": 1
+            },
+            "regions": [
+                {
+                    "id": "OZAuf0WMX",
+                    "type": "RECTANGLE",
+                    "tags": [
+                        "human"
+                    ],
+                    "boundingBox": {
+                        "height": 356.9838957055215,
+                        "width": 108.1038647342995,
+                        "left": 564.0507246376811,
+                        "top": 51.78174846625767
+                    },
+                    "points": [
+                        {
+                            "x": 564.0507246376811,
+                            "y": 51.78174846625767
+                        },
+                        {
+                            "x": 672.1545893719806,
+                            "y": 51.78174846625767
+                        },
+                        {
+                            "x": 672.1545893719806,
+                            "y": 408.7656441717791
+                        },
+                        {
+                            "x": 564.0507246376811,
+                            "y": 408.7656441717791
+                        }
+                    ]
+                },
+                {
+                    "id": "-BOLGVbIP",
+                    "type": "RECTANGLE",
+                    "tags": [
+                        "vehicle",
+                        "mercedes"
+                    ],
+                    "boundingBox": {
+                        "height": 276.3231211656442,
+                        "width": 599.3743961352657,
+                        "left": 155.29468599033817,
+                        "top": 114.90977760736196
+                    },
+                    "points": [
+                        {
+                            "x": 155.29468599033817,
+                            "y": 114.90977760736196
+                        },
+                        {
+                            "x": 754.6690821256038,
+                            "y": 114.90977760736196
+                        },
+                        {
+                            "x": 754.6690821256038,
+                            "y": 391.2328987730061
+                        },
+                        {
+                            "x": 155.29468599033817,
+                            "y": 391.2328987730061
+                        }
+                    ]
+                }
+            ],
+            "version": "2.1.0"
+        }
+    }
+}

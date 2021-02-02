@@ -1,0 +1,109 @@
+{
+    "name": "test_project",
+    "securityToken": "test_project Token",
+    "sourceConnection": {
+        "name": "input_connection",
+        "providerType": "localFileSystemProxy",
+        "providerOptions": {
+            "encrypted": "eyJjaXBoZXJ0ZXh0IjoiYjk5N2JlMzk0ZmE2NGQ4MDg1NDFjZmMwNDgxNGIxZDczZjgyMjNhMThiNGM1MGRiMTNkY2I1ZGZhNTIwM2I5NGI0ODUyZTZjZjg4MzFjMmM1OTc3MWMzMGI4NjIyNDgyM2Y5NWM5YzJmMjg1Yjc5ZWM1MjY4YjZlOTQ3ZjQyZTg5MDhmOGFhMzE0MTYwOTkxMzI4ZDk4OTA2OWZmNTYyYiIsIml2IjoiYTVkMTcxNDM1MTU5NzUzODNiMDVjYzUzNjU1NmU2MzA0ZTcxM2Y3NTMxM2MxZDI4In0="
+        },
+        "id": "Hmcq0swZ_"
+    },
+    "targetConnection": {
+        "name": "output_connection",
+        "providerType": "localFileSystemProxy",
+        "providerOptions": {
+            "encrypted": "eyJjaXBoZXJ0ZXh0IjoiMzg4ZWViMDBmMGVlNTg0MGI4OGMxYWE1NTAyMTEyNTY4ZTA3YmUwZDhlODA2MzZjODMxMTM4YjRmZDBiM2U1ZjliZWYzMzJiMTI1ODcyZTM3MGQ4YzhiNjBlYTE5Nzg3NDMxZTY2YTI3NzZhYzJhZjVhOWFjYjhhNWIxYzhhNjFmNjJlZDNkZGIxMDdkYzBhZjJlOGFjNjllYTU0NDI1MCIsIml2IjoiYTgwODNmYzQ2NjY2Nzg3ZmI1ZWVlNjIxYWU2YjgzNWQzZTU3OGI2NDlhMDVlZTAyIn0="
+        },
+        "id": "gbxpVz53v"
+    },
+    "videoSettings": {
+        "frameExtractionRate": 15
+    },
+    "tags": [
+        {
+            "name": "vehicle",
+            "color": "#800080"
+        },
+        {
+            "name": "porshe",
+            "color": "#FF00FF"
+        },
+        {
+            "name": "mercedes",
+            "color": "#800080"
+        },
+        {
+            "name": "other",
+            "color": "#FF0000"
+        },
+        {
+            "name": "human",
+            "color": "#800000"
+        }
+    ],
+    "id": "KmEb8LCIi",
+    "activeLearningSettings": {
+        "autoDetect": false,
+        "predictTag": true,
+        "modelPathType": "coco"
+    },
+    "exportFormat": {
+        "providerType": "vottJson",
+        "providerOptions": {
+            "encrypted": "eyJjaXBoZXJ0ZXh0IjoiMDJlYTgzNTQ2NTUxMGRmMjNkYjA0YzcxN2E0NjdlYmY1ZjZlY2IxYzMwYWEwYjBhYWI3MzVlMzk2YTgzNDQwMmM2MTlkYTgxOWQyMGQxNTYxNjQ0ZmUxNTMwOTczMWE1IiwiaXYiOiJhMzdmZmRjNWFhN2JiMWNmMzMxMjJlY2Q0YjBiYmI4YTkzYWVlYTM0NjM0M2ZhYzEifQ=="
+        }
+    },
+    "version": "2.1.0",
+    "lastVisitedAssetId": "bf0ceca190328f171eb2952cdd19f8c2",
+    "assets": {
+        "afa571a11202d6a2bccb6cf1e84d3267": {
+            "format": "jpg",
+            "id": "afa571a11202d6a2bccb6cf1e84d3267",
+            "name": "image_1.jpg",
+            "path": "file:/Users/aymenbenothmen/Projects/vott_test/images/image_1.jpg",
+            "size": {
+                "width": 896,
+                "height": 504
+            },
+            "state": 2,
+            "type": 1
+        },
+        "b2624d761474c8274a215bf9a399eba7": {
+            "format": "jpg",
+            "id": "b2624d761474c8274a215bf9a399eba7",
+            "name": "image_2.jpg",
+            "path": "file:/Users/aymenbenothmen/Projects/vott_test/images/image_2.jpg",
+            "size": {
+                "width": 1000,
+                "height": 1285
+            },
+            "state": 2,
+            "type": 1
+        },
+        "534ae7c95ef1cd2a636af772eb2c08d4": {
+            "format": "jpg",
+            "id": "534ae7c95ef1cd2a636af772eb2c08d4",
+            "name": "image_3.jpg",
+            "path": "file:/Users/aymenbenothmen/Projects/vott_test/images/image_3.jpg",
+            "size": {
+                "width": 1000,
+                "height": 667
+            },
+            "state": 2,
+            "type": 1
+        },
+        "bf0ceca190328f171eb2952cdd19f8c2": {
+            "format": "jpg",
+            "id": "bf0ceca190328f171eb2952cdd19f8c2",
+            "name": "image_4.jpg",
+            "path": "file:/Users/aymenbenothmen/Projects/vott_test/images/image_4.jpg",
+            "size": {
+                "width": 3000,
+                "height": 1687
+            },
+            "state": 1,
+            "type": 1
+        }
+    }
+}
